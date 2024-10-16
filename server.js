@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 // app.use('/uploads', express.static('uploads'));
 
 const corsOptions = {
-  origin: '*',
+  origin: 'https://musichords.netlify.app',
   credentials: true,
   optionSuccessStatus: 200
 }
