@@ -29,7 +29,7 @@ cloudinary.config({
 
 const port = process.env.PORT;
 
-mongoose.connect('mongodb+srv://admin:root@musichordscluster.rmmgd.mongodb.net/musichordsdb?retryWrites=true&w=majority&appName=musiChordsCluster').then(() => {
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
   console.log('connected to MongoDB');
   const server = app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
