@@ -5,15 +5,17 @@ const router = require('./routes/router');
 const mongoose = require('mongoose');
 const cloudinary = require('cloudinary').v2;
 
+
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
+
 
 const corsOptions = {
-  origin: 'https://musichords.netlify.app',
+  origin: process.env.ORIGIN,
   credentials: true,
   optionSuccessStatus: 200
 }
