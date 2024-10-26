@@ -9,6 +9,7 @@ const songSchema = mongoose.Schema(
     },
     artist: {
       type: String,
+      ref: 'Artist',
       required: [true, "Please enter a song artist  "]
     },
     originalKey: {

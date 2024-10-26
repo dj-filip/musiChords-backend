@@ -7,16 +7,20 @@ const cloudinary = require('cloudinary').v2;
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  params: {
-    folder: 'musiChords/songs',
-    allowed_formats: ['jpg', 'jpeg', 'png']
+  params: async (req, file) => {
+    const fileName = file.originalname.split('.')[0];
+    return {
+      folder: 'musiChords/artists/covers',
+      allowed_formats: ['jpg', 'jpeg', 'png'],
+      public_id: `${fileName}-${Date.now()}`
+    };
   }
-})
+});
 
-const songUpload = multer({ storage: storage });
+const artistUpload = multer({ storage: storage });
 
 
-module.exports = { songUpload };
+module.exports = { artistUpload };
 
 // const storage = (folder) => multer.diskStorage({
 //   destination: (req, file, cb) => {

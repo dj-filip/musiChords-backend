@@ -1,10 +1,14 @@
+const Artist = require('../models/artistModel');
 const Song = require('../models/songModel');
 
 
 exports.addSong = async (req, res) => {
+  console.log("REQ BODY: ");
+  console.log(req.body);
   try {
-    const { title, artist, originalKey, intro, lyricsChords  } = req.body;
-    const coverImage = req.file ? req.file.filename : '';
+    const { title, artistId, artistName: artist, originalKey, intro, lyricsChords, coverImage } = req.body;
+
+    // const artist = await Artist.findOne({ _id: artistId });
 
     const newSong = new Song({
       title,
@@ -16,6 +20,10 @@ exports.addSong = async (req, res) => {
     });
 
     await newSong.save();
+
+    await Artist.findByIdAndUpdate(artistId, { 
+      $push: { songs: newSong._id } // Push the new song's ID to the artist's 'songs' array
+    });
 
     res.status(201).json({ message: 'Song added successfully', newSong });
   } catch (error) {
