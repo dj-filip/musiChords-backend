@@ -15,6 +15,9 @@ const artistSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Song'
     }]
+  },
+  {
+    timestamps: true
   }
 )
 

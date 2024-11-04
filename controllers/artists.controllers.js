@@ -1,5 +1,6 @@
 const Artist = require('../models/artistModel');
 
+
 exports.addArtist = async (req, res) => {
   try {
     const { name } = req.body;
@@ -22,7 +23,7 @@ exports.addArtist = async (req, res) => {
 
     res.status(201).json({ message: 'Artist added successfully', newArtist });
   } catch (error) {
-    res.status(500).json({ message: 'Errors adding artist', error });
+    res.status(500).json({ message: 'Error adding artist', error });
     console.log(error);
   }
 }
